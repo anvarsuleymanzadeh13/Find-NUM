@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find NUM</title>
+	<style>
+		body{
+			overflow-y: hidden;
+		}
+		*{
+			font-family: sans-serif;
+			box-sizing: border-box;
+		}
+		div#demo{
+			width: 400px;
+			height: 360px;
+			margin: 120px auto;
+			background-color: azure;
+			padding: 20px;
+			box-shadow: 5px 5px 5px red;
+			text-align: center;
+			display: none;
+		}
+		input#start{
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			background-color: blue;
+			color: white;
+			text-align: center;
+			font-size: 50px;
+			border: none;
+			margin: 200px auto;
+			outline: none;
+			display: block;
+		}
+		input#ok,input#input{
+			margin:20px;
+			width: 50%;
+			border-radius: 5px;
+			outline: none;
+			border: none;
+			height: 40px;
+			font-size: 25px;
+			padding: 10px;
+		}
+		input#ok{
+			background-color: blue;
+			color: white;
+			line-height: 20px;
+			text-align: center;
+		}
+		span{
+			font-size: 20px;	
+		}
+		button#sec{
+			font-size: 25px;
+			color: blueviolet;
+			margin: 20px;
+			background-color: yellow;
+			border: none;
+			outline: none;
+			border-radius: 50%;
+			padding: 10px;
+			width: 50px;
+			height: 50px;
+		}
+		button#ud{
+			display: none;
+			font-size: 15px;
+			color: purple;
+			margin: 20px;
+			background-color: orange;
+			border: none;
+			outline: none;
+			border-radius: 5%;
+			padding: 10px;
+			width: 50%;
+			height: 50px;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<input id="start" onclick="start()" value="BAŞLA" type="button">
+
+	<div id = 'demo'>
+			<button id = "ud">Uduzdun, oyun yenidən başlayır...</button>
+			<button id = "sec"></button><br>
+			<span id = 'bir'>Ədədi daxil edin (1-20)</span><br>
+			<input onclick = 'input()' id = 'input' type='number'><br>
+			<span id = 'iki'></span><br>
+			<input type = 'button' onclick = 'ok()' id = 'ok' value = 'Yoxla'><br>
+			<span id = 'uc'></span>
+	</div>
+
+	<script>
+
+        function start(){
+
+        	document.getElementById('start').style.display = "none";
+        	document.getElementById('demo').style.display = "block";
+
+		    var n=61;
+				chec();
+			setInterval(()=>{
+				chec();
+			},1000);
+
+		 	function chec(){
+		 		n--;
+		 		if(n>=0){
+		 			if(n<4){
+       				 	document.getElementById('sec').style.color = "white";
+       				 	document.getElementById('sec').style.backgroundColor = "red";
+		 				document.getElementById('sec').innerHTML = n;
+		 			}
+		 			else{
+		 				document.getElementById('sec').innerHTML = n;
+		 			}
+		 		}
+		 		else{   
+		 				document.getElementById('sec').style.display ="none";
+		 				document.getElementById('ud').style.display ="inline-block";
+		 			setTimeout(()=>{
+		 				location.reload();
+		 			},3000)
+		 		}
+		 	}
+        }
+
+        var a = Math.floor(Math.random()*20+1);
+        console.log(a);
+        var arr = [];
+
+		function ok(){
+
+            var b = document.getElementById('input').value;
+
+		    arr.push(b);
+
+		    if(a==b){
+		     	alert("Afərin, " + arr.length + "-ci(cu) cəhddə tapdın");
+		     	location.reload();
+		    }
+		    else if(a<b){
+		    	document.getElementById('iki').innerHTML = "asağı düş";
+		    	document.getElementById('uc').innerHTML += b + " ";
+		    }
+		    else{
+		    	document.getElementById('iki').innerHTML = "yuxarı qalx";
+		    	document.getElementById('uc').innerHTML += b + " ";
+		    }
+        }
+
+        function input(){
+        	document.getElementById('input').value = "";
+		}
+		
+	</script>
+
+</body>
+</html>
